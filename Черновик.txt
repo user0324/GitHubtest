@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cmath> // для round
+using namespace std;
+struct MyStruct
+{	
+	float ceslitel;
+    float znamenatel;
+};
+MyStruct getEnter() // Функция ввод значений чеслителя/знаменателя
+{
+	MyStruct f1;
+	cin >> f1.ceslitel;
+	cin.sync();
+	cin >> f1.znamenatel;
+	cin.sync();
+	return f1;
+}
+float multiplyUm(MyStruct f1, MyStruct f2) // Функция умножения
+{
+	float ResUm;
+	ResUm = static_cast <float> (f1.ceslitel*f2.ceslitel) / (f1.znamenatel*f2.znamenatel);
+	return ResUm;
+}
+float multiplyDe(MyStruct f1, MyStruct f2) // Функция деления
+{
+	float ResDe;
+	ResDe = static_cast <float> (f1.ceslitel*f2.znamenatel) / (f1.znamenatel*f2.ceslitel);
+	return ResDe;
+}
+void input(float ResUm, float ResDe) // Функция вывода с округлением
+{
+	cout << round(ResUm * 100) / 100 << " " << round(ResDe * 100) / 100 << endl;
+}
+int main()
+{
+	MyStruct f1 = getEnter();
+	MyStruct f2 = getEnter();
+	float ResUm = multiplyUm(f1, f2);
+	float ResDe = multiplyDe(f1, f2);
+	input(ResUm, ResDe);
+	return 0;
+}
